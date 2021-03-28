@@ -1,0 +1,2 @@
+class LieuditsController < ApplicationController
+end

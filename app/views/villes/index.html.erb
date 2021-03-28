@@ -1,5 +1,7 @@
 <% @villes.each do |ville|  %>
   <ul>
-    <li><%= ville.name%></li>
+    <li><%= link_to ville.name , ville_path(ville) %></li>
   </ul>
 <% end %>
+
+<%= link_to "Créer une nouvelle ville", new_ville_path %>

@@ -16,13 +16,13 @@ villes_attributes =
   {
     name: "Bars",
     departement: "Dordogne",
-    region: "Nouvelle Aquitaine",
+    region: "Nouvelle-Aquitaine",
     pays: "France"
   },
   {
     name: "Sainte-Orse",
     departement: "Dordogne",
-    region: "Nouvelle Aquitaine",
+    region: "Nouvelle-Aquitaine",
     pays: "France"
   }
 ]

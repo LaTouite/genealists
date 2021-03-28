@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_200931) do
+ActiveRecord::Schema.define(version: 2021_03_28_163124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lieu_dits", force: :cascade do |t|
+    t.string "name"
+    t.bigint "ville_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ville_id"], name: "index_lieu_dits_on_ville_id"
+  end
+
+  create_table "lieudits", force: :cascade do |t|
+    t.string "name"
+    t.bigint "ville_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ville_id"], name: "index_lieudits_on_ville_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +52,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_200931) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "lieu_dits", "villes"
+  add_foreign_key "lieudits", "villes"
 end
