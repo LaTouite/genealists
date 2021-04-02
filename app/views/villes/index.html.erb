@@ -6,9 +6,9 @@
 <% r.uniq.each do |region| %>
   <p><%= region %></p>
   <ul>
-      <% @villes.where(region: region).each do |ville| %>
-        <li><%= link_to ville.name, ville_path(ville) %></li>
-      <% end %>
+    <% @villes.where(region: region).each do |ville| %>
+      <li><%= link_to ville.name, ville_path(ville) %></li>
+    <% end %>
   </ul>
 <% end %>
 

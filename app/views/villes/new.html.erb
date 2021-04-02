@@ -1,9 +1,9 @@
 <h1>Créer une ville</h1>
 <%= simple_form_for @ville do |f| %>
-  <%= f.input :name, label: "Nom" %>
-  <%= f.input :departement, label: "Département" %>
-  <%= f.input :region, label: "Région", collection: Ville::REGIONS %>
   <%= f.input :pays, as: :country, priority: ["France"] %>
+  <%= f.input :region, label: "Région", collection: Ville::REGIONS %>
+  <%= f.input :departement, label: "Département", collection: Ville::DEPARTEMENTS %>
+  <%= f.input :name, label: "Nom" %>
   <%= f.button :submit %>
 <% end %>
 <%= link_to "Annuler" , villes_path %>

@@ -4,7 +4,7 @@
   <%= f.input :departement, label: "Département" %>
   <%= f.input :region, label: "Région", collection: Ville::REGIONS %>
   <%= f.input :pays, as: :country, priority: ["France"] %>
-  <%= f.button :submit %>
+  <%= f.button :submit, "Modifier" %>
 <% end %>
 
 <%= link_to "Annuler" , ville_path(@ville) %>

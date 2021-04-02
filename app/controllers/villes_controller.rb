@@ -31,6 +31,7 @@ class VillesController < ApplicationController
     @ville = Ville.find(params[:id])
     @ville.update(ville_params)
     authorize @ville
+    redirect_to ville_path(@ville)
   end
 
   private
