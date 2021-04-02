@@ -1,6 +1,14 @@
+<% r = [] %>
 <% @villes.each do |ville|  %>
+  <% r << ville.region %>
+<% end %>
+
+<% r.uniq.each do |region| %>
+  <p><%= region %></p>
   <ul>
-    <li><%= link_to ville.name , ville_path(ville) %></li>
+      <% @villes.where(region: region).each do |ville| %>
+        <li><%= link_to ville.name, ville_path(ville) %></li>
+      <% end %>
   </ul>
 <% end %>
 
