@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_163124) do
+ActiveRecord::Schema.define(version: 2021_04_03_125959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(version: 2021_03_28_163124) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["ville_id"], name: "index_lieudits_on_ville_id"
+  end
+
+  create_table "registres", force: :cascade do |t|
+    t.string "cote"
+    t.string "anneededebut"
+    t.string "anneedefin"
+    t.string "nature"
+    t.bigint "ville_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ville_id"], name: "index_registres_on_ville_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +65,5 @@ ActiveRecord::Schema.define(version: 2021_03_28_163124) do
 
   add_foreign_key "lieu_dits", "villes"
   add_foreign_key "lieudits", "villes"
+  add_foreign_key "registres", "villes"
 end
