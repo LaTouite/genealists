@@ -1,0 +1,9 @@
+<h1>Créer un nouveau registre pour <%= @ville.name %></h1>
+<%= simple_form_for [@ville, @registre] do |f| %>
+  <%= f.input :cote, label: "Côte" %>
+  <%= f.input :anneededebut, label: "Année de début" %>
+  <%= f.input :anneedefin, label: "Année de fin" %>
+  <%= f.input :nature, label: "Nature", collection: Registre::NATURES %>
+  <%= f.button :submit, "Créer" %>
+<% end %>
+<%= link_to "Retour ville", ville_path(@ville) %>

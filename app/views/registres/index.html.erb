@@ -1,0 +1,9 @@
+<p>Les registres pour <%= @ville.name %> </p>
+<% @ville.registres.each do |registre| %>
+<% if registre.anneededebut != registre.anneedefin %>
+  <p><%= registre.cote %>, <%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %></p>
+<% else %>
+  <p><%= registre.cote %>, <%= registre.anneededebut %>, <%= registre.nature %></p>
+<% end %>
+<% end %>
+<%= link_to "Ville", ville_path(@ville) %>

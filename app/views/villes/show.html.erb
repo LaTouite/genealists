@@ -1,3 +1,7 @@
-<%= @ville.name %>
-<br><%= link_to "Modifier", edit_ville_path(@ville) %>
-<br><%= link_to "Toutes les villes", villes_path %>
+<h1><%= @ville.name %></h1>
+<p><%= link_to "Modifier", edit_ville_path(@ville) %></p>
+<p><%= link_to "Lieux-dits", ville_lieudits_path(@ville) %></p>
+<p><%= link_to "Créer un lieu-dit", new_ville_lieudit_path(@ville) %></p>
+<p><%= link_to "Registres", ville_registres_path(@ville) %></p>
+<p><%= link_to "Créer un registre", new_ville_registre_path(@ville) %></p>
+<p><%= link_to "Toutes les villes", villes_path %></p>

@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   resources :villes do
     resources :lieudits
+    resources :registres
   end
 end

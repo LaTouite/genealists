@@ -9,11 +9,11 @@ class VillePolicy < ApplicationPolicy
     return true
   end
 
-  def create?
+  def new?
     return true
   end
 
-  def new?
+  def create?
     return true
   end
 
