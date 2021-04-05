@@ -6,6 +6,12 @@ class RegistresController < ApplicationController
     @registres = policy_scope(Registre).order(created_at: :desc)
   end
 
+  def show
+    @ville = Ville.find(params[:ville_id])
+    @registre = Registre.find(params[:id])
+    authorize @registre
+  end
+
   def new
     @ville = Ville.find(params[:ville_id])
     @registre = Registre.new
@@ -18,7 +24,7 @@ class RegistresController < ApplicationController
     @registre.ville = @ville
     @registre.save
     authorize @registre
-    redirect_to ville_path(@ville)
+    redirect_to ville_registre_path(@ville, @registre)
   end
 
   private

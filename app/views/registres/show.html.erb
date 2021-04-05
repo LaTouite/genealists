@@ -1,0 +1,6 @@
+<% if @registre.anneededebut != @registre.anneedefin %>
+  <h1><%= @registre.anneededebut + "-" + @registre.anneedefin + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %> </h1>
+<% else %>
+  <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %> </h1>
+<% end %>
+<%= link_to "Tous les Registres de " + @ville.name, ville_registres_path %>

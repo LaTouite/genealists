@@ -1,9 +1,37 @@
-<p>Les registres pour <%= @ville.name %> </p>
-<% @ville.registres.each do |registre| %>
-<% if registre.anneededebut != registre.anneedefin %>
-  <p><%= registre.cote %>, <%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %></p>
-<% else %>
-  <p><%= registre.cote %>, <%= registre.anneededebut %>, <%= registre.nature %></p>
+<h1>Les registres pour <%= @ville.name %></h1>
+<h2><%= @ville.registres.count %> registres disponibles</h2>
+<!-- Naissances -->
+<h3>Naissances</h3>
+<% if @ville.registres.where(nature: "Naissances") %>
+  <% @ville.registres.where(nature: "Naissances").each do |registre| %>
+    <% if registre.anneededebut != registre.anneedefin %>
+      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
+    <% else %>
+      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
+    <% end %>
+  <% end %>
 <% end %>
+<!-- Mariages -->
+<h3>Mariages</h3>
+<% if @ville.registres.where(nature: "Mariages") %>
+  <% @ville.registres.where(nature: "Mariages").each do |registre| %>
+    <% if registre.anneededebut != registre.anneedefin %>
+      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
+    <% else %>
+      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
+    <% end %>
+  <% end %>
 <% end %>
-<%= link_to "Ville", ville_path(@ville) %>
+<!-- Décès -->
+<h3>Décès</h3>
+<% if @ville.registres.where(nature: "Décès") %>
+  <% @ville.registres.where(nature: "Décès").each do |registre| %>
+    <% if registre.anneededebut != registre.anneedefin %>
+      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
+    <% else %>
+      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
+    <% end %>
+  <% end %>
+<% end %>
+<p><%= link_to "Créer un nouveau registre pour " + @ville.name, new_ville_registre_path(@ville) %></p>
+<p><%= link_to @ville.name, ville_path(@ville) %></p>

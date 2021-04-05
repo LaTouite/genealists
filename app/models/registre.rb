@@ -1,5 +1,5 @@
 class Registre < ApplicationRecord
   belongs_to :ville
 
-  NATURES = ["Naissance", "Baptême", "Mariage", "Promesse de mariage", "Décès", "Sépulture", "Autres"]
+  NATURES = ["Naissances", "Baptêmes", "Mariages", "Publications de mariage", "Décès", "Sépultures", "Autres"]
 end
