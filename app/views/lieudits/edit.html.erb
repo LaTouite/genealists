@@ -1,0 +1,6 @@
+<h1>Créer un nouveau lieu-dit pour <%= @ville.name %></h1>
+<%= simple_form_for [@ville, @lieudit] do |f| %>
+  <%= f.input :name, label: "Nom" %>
+  <%= f.button :submit, "Modifier" %>
+<% end %>
+<%= link_to "Retour", ville_path(@ville) %>

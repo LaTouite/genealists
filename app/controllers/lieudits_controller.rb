@@ -21,6 +21,20 @@ class LieuditsController < ApplicationController
     redirect_to ville_lieudits_path(@ville)
   end
 
+  def edit
+    @lieudit = Lieudit.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    authorize @lieudit
+  end
+
+  def update
+    @lieudit = Lieudit.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    @lieudit.update(lieudit_params)
+    authorize @lieudit
+    redirect_to ville_lieudits_path(@ville)
+  end
+
   def destroy
     @lieudit = Lieudit.find(params[:id])
     @ville = Ville.find(params[:ville_id])

@@ -27,6 +27,20 @@ class RegistresController < ApplicationController
     redirect_to ville_registre_path(@ville, @registre)
   end
 
+  def edit
+    @registre = Registre.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    authorize @registre
+  end
+
+  def update
+    @registre = Registre.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    @registre.update(registre_params)
+    authorize @registre
+    redirect_to ville_registres_path(@ville)
+  end
+
   def destroy
     @registre = Registre.find(params[:id])
     @ville = Ville.find(params[:ville_id])

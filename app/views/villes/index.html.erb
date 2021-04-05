@@ -7,7 +7,7 @@
   <p><%= region %></p>
   <ul>
     <% @villes.where(region: region).each do |ville| %>
-      <li><%= link_to ville.name, ville_path(ville) %><%= link_to "Supprimer", ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></li>
+      <li><%= link_to ville.name, ville_path(ville) %><%= link_to "Modifier", edit_ville_path(ville) %><%= link_to "Supprimer", ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></li>
     <% end %>
   </ul>
 <% end %>
