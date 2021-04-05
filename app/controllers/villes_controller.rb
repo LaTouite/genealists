@@ -1,5 +1,5 @@
 class VillesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update]
+  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
     @villes = policy_scope(Ville).order(created_at: :desc)
@@ -32,6 +32,13 @@ class VillesController < ApplicationController
     @ville.update(ville_params)
     authorize @ville
     redirect_to ville_path(@ville)
+  end
+
+  def destroy
+    @ville = Ville.find(params[:id])
+    @ville.destroy
+    authorize @ville
+    redirect_to villes_path
   end
 
   private

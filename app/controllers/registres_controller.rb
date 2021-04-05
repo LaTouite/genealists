@@ -1,5 +1,5 @@
 class RegistresController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update]
+  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
     @ville = Ville.find(params[:ville_id])
@@ -25,6 +25,14 @@ class RegistresController < ApplicationController
     @registre.save
     authorize @registre
     redirect_to ville_registre_path(@ville, @registre)
+  end
+
+  def destroy
+    @registre = Registre.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    @registre.destroy
+    authorize @registre
+    redirect_to ville_registres_path(@ville)
   end
 
   private

@@ -1,5 +1,5 @@
 class LieuditsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update]
+  skip_before_action :authenticate_user!, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
     @ville = Ville.find(params[:ville_id])
@@ -18,7 +18,15 @@ class LieuditsController < ApplicationController
     @lieudit.ville = @ville
     @lieudit.save
     authorize @lieudit
-    redirect_to ville_path(@ville)
+    redirect_to ville_lieudits_path(@ville)
+  end
+
+  def destroy
+    @lieudit = Lieudit.find(params[:id])
+    @ville = Ville.find(params[:ville_id])
+    @lieudit.destroy
+    authorize @lieudit
+    redirect_to ville_lieudits_path(@ville)
   end
 
   private

@@ -1,35 +1,14 @@
 <h1>Les registres pour <%= @ville.name %></h1>
 <h2><%= @ville.registres.count %> registres disponibles</h2>
-<!-- Naissances -->
-<h3>Naissances</h3>
-<% if @ville.registres.where(nature: "Naissances") %>
-  <% @ville.registres.where(nature: "Naissances").each do |registre| %>
-    <% if registre.anneededebut != registre.anneedefin %>
-      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
-    <% else %>
-      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
-    <% end %>
-  <% end %>
-<% end %>
-<!-- Mariages -->
-<h3>Mariages</h3>
-<% if @ville.registres.where(nature: "Mariages") %>
-  <% @ville.registres.where(nature: "Mariages").each do |registre| %>
-    <% if registre.anneededebut != registre.anneedefin %>
-      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
-    <% else %>
-      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
-    <% end %>
-  <% end %>
-<% end %>
-<!-- Décès -->
-<h3>Décès</h3>
-<% if @ville.registres.where(nature: "Décès") %>
-  <% @ville.registres.where(nature: "Décès").each do |registre| %>
-    <% if registre.anneededebut != registre.anneedefin %>
-      <p><%= registre.anneededebut %>-<%= registre.anneedefin %>, <%= registre.nature %> (côte: <%= registre.cote %>)</p>
-    <% else %>
-      <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %></p>
+<% Registre::NATURES.each do |nature|  %>
+  <% if @ville.registres.where(nature: nature).count != 0 %>
+    <h3><%= nature %></h3>
+    <% @ville.registres.where(nature: nature).each do |registre| %>
+      <% if registre.anneededebut != registre.anneedefin %>
+        <p><%= link_to registre.anneededebut + "-" + registre.anneedefin + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %><%= link_to "Supprimer", ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+      <% else %>
+        <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %><%= link_to "Supprimer", ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

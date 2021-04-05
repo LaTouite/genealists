@@ -4,3 +4,5 @@
   <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %> </h1>
 <% end %>
 <%= link_to "Tous les Registres de " + @ville.name, ville_registres_path %>
+<p><%= link_to "Supprimer", ville_registre_path(@ville, @registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+

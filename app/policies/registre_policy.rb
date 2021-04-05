@@ -5,7 +5,7 @@ class RegistrePolicy < ApplicationPolicy
     end
   end
 
-  def show?
+    def show?
     return true
   end
 
@@ -14,6 +14,18 @@ class RegistrePolicy < ApplicationPolicy
   end
 
   def create?
+    return true
+  end
+
+  def edit?
+    return true
+  end
+
+  def update?
+    return true
+  end
+
+  def destroy?
     return true
   end
 end

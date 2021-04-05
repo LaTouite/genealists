@@ -5,3 +5,4 @@
 <p><%= link_to "Registres", ville_registres_path(@ville) %></p>
 <p><%= link_to "Créer un registre", new_ville_registre_path(@ville) %></p>
 <p><%= link_to "Toutes les villes", villes_path %></p>
+<p><%= link_to "Supprimer", ville_path(@ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
