@@ -1,8 +1,12 @@
 <h1>Les registres pour <%= @ville.name %></h1>
-<h2><%= @ville.registres.count %> registres disponibles</h2>
+<% if @ville.registres.count > 1 %>
+  <h2><%= @ville.registres.count %> registres disponibles</h2>
+<% else %>
+  <h2><%= @ville.registres.count %> registre disponible</h2>
+<% end %>
 <% Registre::NATURES.each do |nature|  %>
   <% if @ville.registres.where(nature: nature).count != 0 %>
-    <h3><%= nature %></h3>
+    <h3><%= nature %> (<%= @ville.registres.where(nature: nature).count %>)</h3>
     <% @ville.registres.where(nature: nature).each do |registre| %>
       <% if registre.anneededebut != registre.anneedefin %>
         <p><%= link_to registre.anneededebut + "-" + registre.anneedefin + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %><%= link_to "Modifier", edit_ville_registre_path(@ville, registre) %><%= link_to "Supprimer", ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
