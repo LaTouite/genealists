@@ -1,8 +1,8 @@
 <% if @registre.anneededebut != @registre.anneedefin %>
-  <h1><%= @registre.anneededebut + "-" + @registre.anneedefin + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %> </h1>
+  <h1><%= @registre.anneededebut + "-" + @registre.anneedefin + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
 <% else %>
-  <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %> </h1>
+  <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
 <% end %>
-<p><%= link_to "Modifier", edit_ville_registre_path(@ville, @registre) %></p>
-<p><%= link_to "Supprimer", ville_registre_path(@ville, @registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+<%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, @registre) %>
+<%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, @registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></h1>
 <%= link_to "Tous les Registres de " + @ville.name, ville_registres_path %>

@@ -1,6 +1,6 @@
 <h1><%= @ville.name %> et ses lieu-dits</h1>
 <% @ville.lieudits.each do |lieudit| %>
-  <p><%= lieudit.name %><%= link_to "Modifier", edit_ville_lieudit_path(@ville, lieudit) %><%= link_to "Supprimer", ville_lieudit_path(@ville, lieudit), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+  <p><%= lieudit.name %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_lieudit_path(@ville, lieudit) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_lieudit_path(@ville, lieudit), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
 <% end %>
 <%= link_to "Créer un nouveau lieu-dit pour " + @ville.name, new_ville_lieudit_path %>
 <br><%= link_to "Retour villes", villes_path %>

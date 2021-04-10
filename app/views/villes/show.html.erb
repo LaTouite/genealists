@@ -1,4 +1,4 @@
-<%= @ville.name %><%= link_to "Modifier", edit_ville_path(@ville) %><%= link_to "Supprimer", ville_path(@ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
+<%= @ville.name %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(@ville) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(@ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
 <p><%= link_to "Lieux-dits", ville_lieudits_path(@ville) %></p>
 <p><%= link_to "Créer un lieu-dit", new_ville_lieudit_path(@ville) %></p>
 <p><%= link_to "Registres", ville_registres_path(@ville) %></p>
