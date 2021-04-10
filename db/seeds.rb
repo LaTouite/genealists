@@ -19,7 +19,7 @@ users_attributes =
 [
   {
     email: "admin@admin.fr",
-    encrypted_password: "admin"
+    password: "genealist"
   }
 ]
 
