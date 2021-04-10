@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_125959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lieu_dits", force: :cascade do |t|
-    t.string "name"
-    t.bigint "ville_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["ville_id"], name: "index_lieu_dits_on_ville_id"
-  end
-
   create_table "lieudits", force: :cascade do |t|
     t.string "name"
     t.bigint "ville_id", null: false
@@ -63,7 +55,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_125959) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "lieu_dits", "villes"
   add_foreign_key "lieudits", "villes"
   add_foreign_key "registres", "villes"
 end

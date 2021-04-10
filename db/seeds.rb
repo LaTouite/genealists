@@ -7,7 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'Cleanind database'
 
+User.destroy_all
 Ville.destroy_all
+Lieudit.destroy_all
+Registre.destroy_all
+
+
+puts 'Creating users...'
+
+users_attributes =
+[
+  {
+    email: "admin@admin.fr",
+    encrypted_password: "admin"
+  }
+]
+
+User.create!(users_attributes)
+
+puts 'users created !'
 
 puts 'Creating villes...'
 
