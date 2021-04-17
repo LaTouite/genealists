@@ -1,0 +1,9 @@
+<% if @registre.anneededebut == @registre.anneedefin %>
+  <p>Actes disponibles pour le registre des <%= @registre.nature %> de la ville de <%= @ville.name %> pour l'année <%= @registre.anneededebut %></p>
+<% else %>
+  <p>Actes disponibles pour le registre des <%= @registre.nature %> de la ville de <%= @ville.name %> pour la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %></p>
+<% end %>
+<% @actes.where(registre_id: @registre.id).each do |acte| %>
+  <p><%= acte.categorie %>, <%= acte.datederedaction%></p>
+<% end %>
+<%= link_to "Retour", ville_registres_path(@ville) %>

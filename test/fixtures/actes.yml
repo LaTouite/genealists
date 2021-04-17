@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  categorie: MyString
+  datederedaction: 2021-04-17
+  datedelevenement: 2021-04-17
+  page: 1
+  registre: one
+
+two:
+  categorie: MyString
+  datederedaction: 2021-04-17
+  datedelevenement: 2021-04-17
+  page: 1
+  registre: two

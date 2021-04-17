@@ -1,0 +1,15 @@
+<h1>Créer un acte pour le registre <%= @registre.cote %></h1>
+<%= simple_form_for [@ville, @registre, @acte], remote: true do |f| %>
+  <% if @registre.nature == "Baptêmes, Mariages, Sépultures" %>
+    <%= f.input :categorie, label: "Catégorie", collection: ["Baptêmes", "Mariages", "Sépultures"] %>
+  <% elsif @registre.nature == "Naissances, Mariages, Décès" %>
+    <%= f.input :categorie, label: "Catégorie", collection: ["Naissances", "Mariages", "Décès"] %>
+  <% else %>
+    <%= f.input :categorie, as: :hidden, input_html: {value: @registre.nature }  %>
+  <% end %>
+    <span>Catégorie : </span><%= @registre.nature %>
+  <%= f.input :datederedaction, label: "Date de rédaction", input_html: { class: "datepicker" } %>
+  <%= f.input :datedelevenement, label: "Date de l'évènement", input_html: { class: "datepicker" } %>
+  <%= f.input :page, label: "Page" %>
+  <%= f.button :submit, "Créer" %>
+<% end %>
