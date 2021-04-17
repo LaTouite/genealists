@@ -1,4 +1,10 @@
-<h1>Créer un acte pour le registre <%= @registre.cote %></h1>
+<h1>Créer un acte pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %>
+  <% if @registre.anneededebut == @registre.anneedefin %>
+    pour l'année <%= @registre.anneededebut %>
+  <% else %>
+    pour la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %></p>
+  <% end %>
+</h1>
 <%= simple_form_for [@ville, @registre, @acte], remote: true do |f| %>
   <% if @registre.nature == "Baptêmes, Mariages, Sépultures" %>
     <%= f.input :categorie, label: "Catégorie", collection: ["Baptêmes", "Mariages", "Sépultures"] %>
@@ -6,10 +12,11 @@
     <%= f.input :categorie, label: "Catégorie", collection: ["Naissances", "Mariages", "Décès"] %>
   <% else %>
     <%= f.input :categorie, as: :hidden, input_html: {value: @registre.nature }  %>
+    <p>Catégorie : <%= @registre.nature %></p>
   <% end %>
-    <span>Catégorie : </span><%= @registre.nature %>
-  <%= f.input :datederedaction, label: "Date de rédaction", input_html: { class: "datepicker" } %>
-  <%= f.input :datedelevenement, label: "Date de l'évènement", input_html: { class: "datepicker" } %>
+  <%= f.input :datederedaction, label: "Date de rédaction", as: :string, input_html: { class: "datepicker" } %>
+  <%= f.input :datedelevenement, label: "Date de l'évènement", as: :string, input_html: { class: "datepicker" } %>
   <%= f.input :page, label: "Page" %>
   <%= f.button :submit, "Créer" %>
 <% end %>
+<%= link_to "Retour", ville_registre_actes_path(@ville, @registre) %>

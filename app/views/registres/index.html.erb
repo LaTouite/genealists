@@ -9,9 +9,9 @@
     <h3><%= nature %> (<%= @ville.registres.where(nature: nature).count %>)</h3>
     <% @ville.registres.where(nature: nature).each do |registre| %>
       <% if registre.anneededebut != registre.anneedefin %>
-        <p><%= link_to registre.anneededebut + "-" + registre.anneedefin + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+        <p><%= link_to registre.anneededebut + "-" + registre.anneedefin + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_actes_path(@ville, registre) %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
       <% else %>
-        <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+        <p><%= link_to registre.anneededebut + ", " + registre.nature + " (côte: " + registre.cote + ")", ville_registre_actes_path(@ville, registre) %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, registre) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
       <% end %>
     <% end %>
   <% end %>

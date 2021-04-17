@@ -28,7 +28,7 @@ class ActesController < ApplicationController
     @acte.registre = @registre
     @acte.save
     authorize @acte
-    redirect_to ville_registre_acte_path(@ville, @registre, @acte)
+    redirect_to ville_registre_actes_path(@ville, @registre, @acte)
   end
 
   private
