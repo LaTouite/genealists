@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :villes do
     resources :lieudits
     resources :registres do
-      resources :actes
+      resources :actes do
+        resources :commentaires
+      end
     end
   end
 end

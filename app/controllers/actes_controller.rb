@@ -11,6 +11,7 @@ class ActesController < ApplicationController
     @ville = Ville.find(params[:ville_id])
     @registre = Registre.find(params[:registre_id])
     @acte = Acte.find(params[:id])
+    @commentaire = Commentaire.new
     authorize @acte
   end
 

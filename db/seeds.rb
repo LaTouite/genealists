@@ -5,29 +5,32 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts 'Cleanind database'
+puts 'Suppression de la base de données'
 
 User.destroy_all
 Ville.destroy_all
 Lieudit.destroy_all
 Registre.destroy_all
+Acte.destroy_all
+Commentaire.destroy_all
 
-
-puts 'Creating users...'
+puts 'Création des utilisateurs...'
 
 users_attributes =
 [
   {
     email: "admin@admin.fr",
-    password: "genealist"
+    password: "genealist",
+    nom: "TOUITOU",
+    prenom: "David"
   }
 ]
 
 User.create!(users_attributes)
 
-puts 'users created !'
+puts 'Utilisateurs créés !'
 
-puts 'Creating villes...'
+puts 'Création des villes...'
 
 villes_attributes =
 [
@@ -47,4 +50,4 @@ villes_attributes =
 
 Ville.create!(villes_attributes)
 
-puts 'villes created !'
+puts 'villes créées !'

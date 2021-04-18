@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_214657) do
+ActiveRecord::Schema.define(version: 2021_04_18_201543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,20 @@ ActiveRecord::Schema.define(version: 2021_04_17_214657) do
     t.date "datederedaction"
     t.date "datedelevenement"
     t.integer "page"
-    t.string "photo"
     t.bigint "registre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "photo"
     t.index ["registre_id"], name: "index_actes_on_registre_id"
+  end
+
+  create_table "commentaires", force: :cascade do |t|
+    t.integer "fiabilite"
+    t.text "contenu"
+    t.bigint "acte_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["acte_id"], name: "index_commentaires_on_acte_id"
   end
 
   create_table "lieudits", force: :cascade do |t|
@@ -54,6 +63,8 @@ ActiveRecord::Schema.define(version: 2021_04_17_214657) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "nom"
+    t.string "prenom"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -68,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_214657) do
   end
 
   add_foreign_key "actes", "registres"
+  add_foreign_key "commentaires", "actes"
   add_foreign_key "lieudits", "villes"
   add_foreign_key "registres", "villes"
 end

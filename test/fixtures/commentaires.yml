@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fiabilite: 1
+  contenu: MyText
+  acte: one
+
+two:
+  fiabilite: 1
+  contenu: MyText
+  acte: two

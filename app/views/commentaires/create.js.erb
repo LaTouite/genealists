@@ -1,0 +1,8 @@
+function add(newCom, where, addHTML) {
+  const com = document.getElementById(newCom);
+  com.insertAdjacentHTML(where, addHTML);
+}
+
+if (document.querySelector("#test")) {
+  add('test', 'beforeend', '<%= j render "commentaires/contenu", commentaire: @commentaire %>');
+}

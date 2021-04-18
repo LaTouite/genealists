@@ -1,1 +1,14 @@
 <%= @acte.categorie %><%= @acte.datederedaction %>
+
+<%= simple_form_for([@ville, @registre, @acte, @commentaire ], remote: true) do |f| %>
+  <%= f.input :fiabilite, collection: [1, 2, 3, 4, 5] %>
+  <%= f.input :contenu, label: "Commentaire"  %>
+  <%= f.button :submit, "Ajouter" %>
+<% end %>
+
+<div id='test'>
+  <% @acte.commentaires.each do |commentaire| %>
+    <%= render 'commentaires/contenu', commentaire: commentaire %>
+  <% end %>
+</div>
+
