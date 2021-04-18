@@ -14,6 +14,7 @@ class CommentairesController < ApplicationController
     @registre = Registre.find(params[:registre_id])
     @ville = Ville.find(params[:ville_id])
     @commentaire.acte = @acte
+    @commentaire.user = current_user
     @commentaire.save
     authorize @commentaire
     if @commentaire.save

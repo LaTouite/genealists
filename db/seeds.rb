@@ -23,6 +23,12 @@ users_attributes =
     password: "genealist",
     nom: "TOUITOU",
     prenom: "David"
+  },
+  {
+    email: "laura@admin.fr",
+    password: "genealist",
+    nom: "GIAMI",
+    prenom: "Laura"
   }
 ]
 
