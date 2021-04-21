@@ -1,10 +1,56 @@
-<%= @acte.categorie %><%= @acte.datederedaction %>
-
-<% t = Array.new %>
-<% @acte.commentaires.each do |commentaire| %>
-  <% t << commentaire.fiabilite %>
+<% j = @acte.datederedaction.strftime("%A") %>
+<% if j == "Monday" %>
+  <% j = "Lundi" %>
+<% elsif j == "Tuesday" %>
+  <% j = "Mardi" %>
+<% elsif j == "Wednesday" %>
+  <% j = "Mercredi" %>
+<% elsif j == "Thursday" %>
+  <% j = "Jeudi" %>
+<% elsif j == "Friday" %>
+  <% j = "Vendredi" %>
+<% elsif j == "Saturday" %>
+  <% j = "Samedi" %>
+<% elsif j == "Sunday" %>
+  <% j = "Dimanche" %>
 <% end %>
-<div>Fiabilité : <%= t.sum.fdiv(t.count) %></div>
+
+<% m = @acte.datederedaction.strftime("%B") %>
+<% if m == "January" %>
+  <% m = "janvier" %>
+<% elsif m == "Fabruary" %>
+  <% m = "février" %>
+<% elsif m == "March" %>
+  <% m = "mars" %>
+<% elsif m == "April" %>
+  <% m = "avril" %>
+<% elsif m == "May" %>
+  <% j = "mai" %>
+<% elsif m == "June" %>
+  <% m = "juin" %>
+<% elsif m == "July" %>
+  <% m = "juillet" %>
+<% elsif m == "August" %>
+  <% m = "août" %>
+<% elsif m == "September" %>
+  <% m = "septembre" %>
+<% elsif m == "October" %>
+  <% m = "octobre" %>
+<% elsif m == "November" %>
+  <% m = "novembre" %>
+<% elsif m == "December" %>
+  <% m = "décembre" %>
+<% end %>
+
+<p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %></p>
+
+<% if @acte.commentaires.count != 0 %>
+  <% t = Array.new %>
+  <% @acte.commentaires.each do |commentaire| %>
+    <% t << commentaire.fiabilite %>
+  <% end %>
+  <div>Fiabilité : <%= t.sum.fdiv(t.count).ceil(1) %></div>
+<% end %>
 
 <br>
 <%= simple_form_for([@ville, @registre, @acte, @commentaire ], remote: true) do |f| %>

@@ -5,15 +5,18 @@
 import "bootstrap";
 import flatpickrInit from '../plugins/flatpickr.js';
 // import flatpickrInitDeadline from '../plugins/flatpickr.js';
-import "flatpickr/dist/themes/material_blue.css";
+// import "flatpickr/dist/themes/material_blue.css";
 
-flatpickrInit();
+if (document.querySelector(".datepicker")) {
+  flatpickrInit();
+}
 // flatpickrInitDeadline();
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+
+// require("@rails/ujs").start()
+// require("turbolinks").start()
+// require("@rails/activestorage").start()
+// require("channels")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
