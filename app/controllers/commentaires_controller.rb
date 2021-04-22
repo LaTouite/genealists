@@ -19,7 +19,7 @@ class CommentairesController < ApplicationController
     authorize @commentaire
     if @commentaire.save
       respond_to do |format|
-        format.html { redirect_to ville_registre_actes_path(@ville, @registre, @acte) }
+        format.html { redirect_to ville_registre_acte_path(@ville, @registre, @acte) }
         format.js  # <-- will render `app/views/commentaires/create.js.erb`
       end
     else

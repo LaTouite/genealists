@@ -49,12 +49,24 @@
   <% @acte.commentaires.each do |commentaire| %>
     <% t << commentaire.fiabilite %>
   <% end %>
-  <div>Fiabilité : <%= t.sum.fdiv(t.count).ceil(1) %></div>
+  <% s = (t.sum/t.count.to_f*100).ceil(1) %>
+  <div>
+    Fiabilité : <%= s %>% (<%= t.count %> <%= if t.count > 1 then 'votes' else 'vote' end %>)
+    <% if s <= 50 && t.count >= 5 %>
+      <%= "<i class='fas fa-exclamation-circle'></i>".html_safe %>
+    <% elsif s >= 75 && t.count >= 5 %>
+      <%= "<i class='fas fa-check-circle'></i>".html_safe %>
+    <% else %>
+      <%= "<i class='fas fa-question-circle'></i>".html_safe %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Soyez le premier à noter la fiabilité de cet acte et laisser un commentaire</p>
 <% end %>
 
 <br>
 <%= simple_form_for([@ville, @registre, @acte, @commentaire ], remote: true) do |f| %>
-  <%= f.input :fiabilite, collection: [1, 2, 3, 4, 5] %>
+  <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
   <%= f.input :contenu, label: "Commentaire"  %>
   <%= f.button :submit, "Ajouter" %>
 <% end %>
