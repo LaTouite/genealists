@@ -1,7 +1,15 @@
+<!--
 <p>
   <%= commentaire.user.prenom %> <%= commentaire.user.nom %>
-  <br><% commentaire.fiabilite.times do %>
-        <%= "<i class='fas fa-star'></i>".html_safe %>
-      <% end %>
+  <br><%# commentaire.fiabilite.times do %>
+        <%#= "<i class='fas fa-star'></i>".html_safe %>
+      <%# end %>
+  <br><%= commentaire.contenu %>
+</p>
+ -->
+
+<p>
+  <%= commentaire.user.prenom %> <%= commentaire.user.nom %>
+  <br><%= commentaire.fiable %>
   <br><%= commentaire.contenu %>
 </p>
