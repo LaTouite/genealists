@@ -32,6 +32,14 @@ class ActesController < ApplicationController
     redirect_to ville_registre_actes_path(@ville, @registre, @acte)
   end
 
+  def destroy
+    @acte = Acte.find(params[:id])
+    @registre = Registre.find(params[:registre_id])
+    @ville = Ville.find(params[:ville_id])
+    @acte.destroy
+    authorize @acte
+  end
+
   private
 
   def acte_params

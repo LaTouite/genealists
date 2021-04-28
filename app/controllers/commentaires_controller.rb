@@ -30,6 +30,16 @@ class CommentairesController < ApplicationController
     end
   end
 
+  def destroy
+    @commentaire = Commentaire.find(params[:id])
+    @acte = Acte.find(params[:acte_id])
+    @registre = Registre.find(params[:registre_id])
+    @ville = Ville.find(params[:ville_id])
+    @commentaire.destroy
+    redirect_to ville_registre_acte_path(@ville, @registre, @acte)
+    authorize @commentaire
+  end
+
   def commentaire_params
     params.require(:commentaire).permit(:contenu, :fiabilite)
   end
