@@ -42,6 +42,8 @@
   <% m = "décembre" %>
 <% end %>
 
+<h1><%= @ville.name %></h1>
+
 <p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %></p>
 
 <% if @acte.commentaires.count != 0 %>
@@ -78,3 +80,4 @@
   <% end %>
 </div>
 
+<%= link_to 'Liste des actes pour ' + @ville.name, ville_registre_actes_path(@ville, @registre) %>

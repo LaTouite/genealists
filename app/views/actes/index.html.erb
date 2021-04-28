@@ -1,3 +1,4 @@
+<h1><%= @ville.name %></h1>
 <% if @registre.anneededebut != @registre.anneedefin %>
   <h1><%= @registre.anneededebut + "-" + @registre.anneedefin + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
 <% else %>
