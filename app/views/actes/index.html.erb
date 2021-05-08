@@ -7,13 +7,17 @@
 <%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, @registre) %>
 <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, @registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></h1>
 
-<p>Actes disponibles pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
-  <% if @registre.anneededebut == @registre.anneedefin %>
-    l'année <%= @registre.anneededebut %></p>
-  <% else %>
-    la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %>
-  <% end %>
-</p>
+<% if @registre.actes.count == 0 %>
+  <p>Pas d'acte pour cette ville</p>
+<% else %>
+  <p>Actes disponibles pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
+    <% if @registre.anneededebut == @registre.anneedefin %>
+      l'année <%= @registre.anneededebut %></p>
+    <% else %>
+      la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %>
+    <% end %>
+  </p>
+<% end %>
 
 <% @actes.where(registre_id: @registre.id).each do |acte| %>
   <p><%= link_to acte.categorie + ", " + acte.datederedaction.to_s, ville_registre_acte_path(@ville, @registre, acte) %></p>

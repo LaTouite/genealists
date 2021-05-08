@@ -67,7 +67,27 @@
 <% end %>
 
 <br>
-<%= simple_form_for([@ville, @registre, @acte, @commentaire ], remote: true) do |f| %>
+<p>Liste des personnes apparaissant sur cet acte :</p>
+<div id='personne'>
+  <ul>
+    <% @acte.personnes.each do |personne| %>
+      <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
+    <% end %>
+  </ul>
+</div>
+
+<br><br>
+<br>
+<p>Créer une personne associée à cet acte</p>
+<%= simple_form_for([@ville, @registre, @acte, @personne], remote: true) do |f| %>
+  <%= f.input :nom %>
+  <%= f.input :prenom %>
+  <%= f.button :submit, "Créer" %>
+<% end %>
+
+<br><br>
+<br>
+<%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
   <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
   <%= f.input :contenu, label: "Commentaire"  %>
   <%= f.button :submit, "Ajouter" %>

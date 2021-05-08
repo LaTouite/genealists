@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :registres do
       resources :actes do
         resources :commentaires
+        resources :personnes
       end
     end
   end

@@ -12,6 +12,7 @@ class ActesController < ApplicationController
     @registre = Registre.find(params[:registre_id])
     @acte = Acte.find(params[:id])
     @commentaire = Commentaire.new
+    @personne = Personne.new
     authorize @acte
   end
 
