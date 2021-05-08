@@ -6,3 +6,12 @@ function add(newCom, where, addHTML) {
 if (document.querySelector("#test")) {
   add('test', 'beforeend', '<%= j render "commentaires/contenu", commentaire: @commentaire %>');
 }
+
+function change(id, Nb) {
+  const nb = document.getElementById(id);
+  nb.innerHTML = Nb;
+}
+
+if (document.querySelector("#fiabilite")) {
+  change('fiabilite', '<%= j render "commentaires/fiabilite", commentaire: @commentaire %>');
+}

@@ -1,0 +1,17 @@
+<% if @acte.commentaires.count != 0 %>
+  <% t = Array.new %>
+  <% @acte.commentaires.each do |commentaire| %>
+    <% t << commentaire.fiabilite %>
+  <% end %>
+  <% s = (t.sum/t.count.to_f*100).ceil(1) %>
+  <div>
+    Fiabilité : <%= s %>% (<%= t.count %> <%= if t.count > 1 then 'votes' else 'vote' end %>)
+    <% if s <= 50 && t.count >= 5 %>
+      <%= "<i class='fas fa-exclamation-circle'></i>".html_safe %>
+    <% elsif s >= 75 && t.count >= 5 %>
+      <%= "<i class='fas fa-check-circle'></i>".html_safe %>
+    <% else %>
+      <%= "<i class='fas fa-question-circle'></i>".html_safe %>
+    <% end %>
+  </div>
+<% end %>
