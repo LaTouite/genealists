@@ -1,0 +1,8 @@
+function add(newCom, where, addHTML) {
+  const com = document.getElementById(newCom);
+  com.insertAdjacentHTML(where, addHTML);
+}
+
+if (document.querySelector("#personne")) {
+  add('personne', 'beforeend', '<%= j render "personnes/contenu", personne: @personne %>');
+}

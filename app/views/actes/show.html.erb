@@ -68,13 +68,11 @@
 
 <br>
 <p>Liste des personnes apparaissant sur cet acte :</p>
-<div id='personne'>
-  <ul>
-    <% @acte.personnes.each do |personne| %>
-      <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
-    <% end %>
-  </ul>
-</div>
+<ul id='personne'>
+  <% @acte.personnes.each do |personne| %>
+    <%= render 'personnes/contenu', personne: personne %>
+  <% end %>
+</ul>
 
 <br><br>
 <br>
