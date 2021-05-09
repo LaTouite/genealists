@@ -64,24 +64,13 @@
 <%= link_to "Créer une personne associée à cet acte", new_ville_registre_acte_personne_path(@ville, @registre, @acte) %>
 
 <br><br>
-<% if @acte.commentaires.count == 0 %>
-  <p>Soyez le premier à noter la fiabilité de cet acte et laisser un commentaire</p>
-<% end %>
+<div id='first'>
+  <%= render 'commentaires/first' %>
+</div>
 
-<% c = [] %>
-<% @acte.commentaires.each do |t| %>
-  <% c << t.user_id %>
-<% end %>
-
-<% if c.include?(current_user.id)  %>
-  <p>Modifier votre commentaire</p>
-<% else %>
-   <%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
-    <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
-    <%= f.input :contenu, label: "Commentaire"  %>
-    <%= f.button :submit, "Ajouter" %>
-  <% end %>
-<% end %>
+<div id='zone'>
+  <%= render 'commentaires/zone' %>
+</div>
 
 <br>
 <div id='comments'>
