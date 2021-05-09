@@ -6,6 +6,7 @@ class PersonnesController < ApplicationController
     @registre = Registre.find(params[:registre_id])
     @ville = Ville.find(params[:ville_id])
     @personne = Personne.new
+    authorize @personne
   end
 
   def create
@@ -15,18 +16,8 @@ class PersonnesController < ApplicationController
     @ville = Ville.find(params[:ville_id])
     @personne.acte = @acte
     @personne.save
+    redirect_to ville_registre_acte_path(@ville, @registre, @acte)
     authorize @personne
-    if @personne.save
-      respond_to do |format|
-        format.html { redirect_to ville_registre_acte_path(@ville, @registre, @acte) }
-        format.js  # <-- will render `app/views/commentaires/create.js.erb`
-      end
-    else
-      respond_to do |format|
-        format.html { render 'actes/show' }
-        format.js  # <-- idem
-      end
-    end
   end
 
   private

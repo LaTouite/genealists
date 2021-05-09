@@ -10,8 +10,9 @@
 <% if @registre.actes.count == 0 %>
   <p>Pas d'acte pour cette ville</p>
 <% else %>
-  <p>Actes disponibles pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
-    <% if @registre.anneededebut == @registre.anneedefin %>
+  <p>
+    <%= @registre.actes.count %> <%= if @registre.actes.count == 1 then "acte disponible" else "actes disponibles" end %> pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
+  <% if @registre.anneededebut == @registre.anneedefin %>
       l'année <%= @registre.anneededebut %></p>
     <% else %>
       la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %>

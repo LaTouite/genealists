@@ -3,8 +3,8 @@ function add(newCom, where, addHTML) {
   com.insertAdjacentHTML(where, addHTML);
 }
 
-if (document.querySelector("#test")) {
-  add('test', 'beforeend', '<%= j render "commentaires/contenu", commentaire: @commentaire %>');
+if (document.querySelector("#comments")) {
+  add('comments', 'beforeend', '<%= j render "commentaires/contenu", commentaire: @commentaire %>');
 }
 
 function change(id, Nb) {

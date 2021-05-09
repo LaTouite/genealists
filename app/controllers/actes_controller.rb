@@ -30,7 +30,7 @@ class ActesController < ApplicationController
     @acte.registre = @registre
     @acte.save
     authorize @acte
-    redirect_to ville_registre_actes_path(@ville, @registre, @acte)
+    redirect_to new_ville_registre_acte_personne_path(@ville, @registre, @acte)
   end
 
   def destroy

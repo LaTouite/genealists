@@ -49,34 +49,42 @@
 <span id='fiabilite'><%= render 'commentaires/fiabilite' %></span>
 
 <br>
-<p>Liste des personnes apparaissant sur cet acte :</p>
-<ul id='personne'>
-  <% @acte.personnes.each do |personne| %>
-    <%= render 'personnes/contenu', personne: personne %>
-  <% end %>
-</ul>
-
-<br><br>
-<br>
-<p>Créer une personne associée à cet acte</p>
-<%= simple_form_for([@ville, @registre, @acte, @personne], remote: true) do |f| %>
-  <%= f.input :nom %>
-  <%= f.input :prenom %>
-  <%= f.button :submit, "Créer" %>
+<% if @acte.personnes.count != 0 %>
+  <p>Liste des personnes apparaissant sur cet acte :</p>
+  <ul>
+    <% @acte.personnes.each do |personne| %>
+      <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>Aucune personne rattachée à cet acte</p>
 <% end %>
+
+<br>
+<%= link_to "Créer une personne associée à cet acte", new_ville_registre_acte_personne_path(@ville, @registre, @acte) %>
 
 <br><br>
 <% if @acte.commentaires.count == 0 %>
   <p>Soyez le premier à noter la fiabilité de cet acte et laisser un commentaire</p>
 <% end %>
-<%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
-  <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
-  <%= f.input :contenu, label: "Commentaire"  %>
-  <%= f.button :submit, "Ajouter" %>
+
+<% c = [] %>
+<% @acte.commentaires.each do |t| %>
+  <% c << t.user_id %>
+<% end %>
+
+<% if c.include?(current_user.id)  %>
+  <p>Modifier votre commentaire</p>
+<% else %>
+   <%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
+    <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
+    <%= f.input :contenu, label: "Commentaire"  %>
+    <%= f.button :submit, "Ajouter" %>
+  <% end %>
 <% end %>
 
 <br>
-<div id='test'>
+<div id='comments'>
   <% @acte.commentaires.each do |commentaire| %>
     <%= render 'commentaires/contenu', commentaire: commentaire %>
   <% end %>
