@@ -1,0 +1,2 @@
+<p><%= @lieudit.name + ", " + @lieudit.ville.name %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_lieudit_path(@lieudit) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, lieudit_path(@lieudit), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+<%= link_to "Tous les lieus-dits de la ville de " + @lieudit.ville.name, ville_lieudits_path(@ville) %>

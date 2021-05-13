@@ -4,8 +4,8 @@
 <% else %>
   <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
 <% end %>
-<%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_registre_path(@ville, @registre) %>
-<%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_path(@ville, @registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></h1>
+<%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_registre_path(@registre) %>
+<%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, registre_path(@registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></h1>
 
 <% if @registre.actes.count == 0 %>
   <p>Pas d'acte pour cette ville</p>

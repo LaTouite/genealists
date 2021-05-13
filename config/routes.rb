@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'contact', to: 'pages#contact'
   resources :villes do
-    resources :lieudits
-    resources :registres do
+    resources :lieudits, only: [:index, :new, :create]
+    resources :registres, only: [:index, :new, :create] do
       resources :actes do
         resources :commentaires
         resources :personnes
       end
     end
   end
+  resources :lieudits, only: [:show, :edit, :update, :destroy]
+  resources :registres, only: [:show, :edit, :update, :destroy]
 end

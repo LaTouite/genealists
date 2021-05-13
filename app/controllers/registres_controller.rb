@@ -7,8 +7,8 @@ class RegistresController < ApplicationController
   end
 
   def show
-    @ville = Ville.find(params[:ville_id])
     @registre = Registre.find(params[:id])
+    @ville = @registre.ville
     authorize @registre
   end
 
@@ -24,7 +24,7 @@ class RegistresController < ApplicationController
     @registre.ville = @ville
     @registre.save
     authorize @registre
-    redirect_to ville_registre_path(@ville, @registre)
+    redirect_to registre_path(@registre)
   end
 
   def edit
@@ -43,7 +43,7 @@ class RegistresController < ApplicationController
 
   def destroy
     @registre = Registre.find(params[:id])
-    @ville = Ville.find(params[:ville_id])
+    @ville = @registre.ville
     @registre.destroy
     authorize @registre
     redirect_to ville_registres_path(@ville)
