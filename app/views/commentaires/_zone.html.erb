@@ -4,7 +4,7 @@
 <% end %>
 
 <% if c.include?(current_user.id)  %>
-  <p>Modifier votre commentaire</p>
+  <%= link_to "Modifier votre commentaire" %>
 <% else %>
    <%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
     <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>

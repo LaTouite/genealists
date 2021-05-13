@@ -6,12 +6,15 @@ Rails.application.routes.draw do
   resources :villes do
     resources :lieudits, only: [:index, :new, :create]
     resources :registres, only: [:index, :new, :create] do
-      resources :actes do
-        resources :commentaires
-        resources :personnes
+      resources :actes, only: [:index, :new, :create] do
+        resources :commentaires, only: [:index, :new, :create]
+        resources :personnes, only: [:index, :new, :create]
       end
     end
   end
   resources :lieudits, only: [:show, :edit, :update, :destroy]
   resources :registres, only: [:show, :edit, :update, :destroy]
+  resources :actes, only: [:show, :edit, :update, :destroy]
+  resources :commentaires, only: [:show, :edit, :update, :destroy]
+  resources :personnes, only: [:show, :edit, :update, :destroy]
 end

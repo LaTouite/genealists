@@ -42,9 +42,9 @@
   <% m = "décembre" %>
 <% end %>
 
-<h1><%= @ville.name %></h1>
+<h1>Ville : <%= @ville.name %></h1>
 
-<p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %></p>
+<p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_acte_path(@acte) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, acte_path(@acte), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
 
 <span id='fiabilite'><%= render 'commentaires/fiabilite' %></span>
 
@@ -79,4 +79,8 @@
   <% end %>
 </div>
 
-<%= link_to 'Liste des actes pour ' + @ville.name, ville_registre_actes_path(@ville, @registre) %>
+<% if @registre.anneededebut == @registre.anneedefin %>
+  <%= link_to 'Liste des actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + "pour l'année " + @registre.anneededebut, ville_registre_actes_path(@ville, @registre) %>
+<% else %>
+  <%= link_to 'Tous les actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + " pour la période " + @registre.anneededebut + "-" + @registre.anneedefin, ville_registre_actes_path(@ville, @registre) %>
+<% end %>

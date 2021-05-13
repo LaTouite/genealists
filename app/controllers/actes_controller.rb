@@ -8,9 +8,9 @@ class ActesController < ApplicationController
   end
 
   def show
-    @ville = Ville.find(params[:ville_id])
-    @registre = Registre.find(params[:registre_id])
     @acte = Acte.find(params[:id])
+    @registre = @acte.registre
+    @ville = @registre.ville
     @commentaire = Commentaire.new
     @personne = Personne.new
     authorize @acte
@@ -31,6 +31,20 @@ class ActesController < ApplicationController
     @acte.save
     authorize @acte
     redirect_to new_ville_registre_acte_personne_path(@ville, @registre, @acte)
+  end
+
+  def edit
+    @acte = Acte.find(params[:id])
+    @registre = @acte.registre
+    @ville = @registre.ville
+    authorize @acte
+  end
+
+  def update
+    @acte = Acte.find(params[:id])
+    @acte.update(acte_params)
+    authorize @acte
+    redirect_to acte_path(@acte)
   end
 
   def destroy

@@ -10,5 +10,5 @@
 <p>
 <%= commentaire.user.prenom %> <%= commentaire.user.nom %>
   <br><%= if commentaire.fiabilite == 1 then "<i class='far fa-thumbs-up'></i>".html_safe else "<i class='far fa-thumbs-down'></i>".html_safe end %>
-  <br><%= commentaire.contenu %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_registre_acte_commentaire_path(@ville, @registre, @acte, commentaire), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
+  <br><%= commentaire.contenu %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_commentaire_path(commentaire) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, commentaire_path(commentaire), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
 </p>

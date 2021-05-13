@@ -1,0 +1,6 @@
+
+<%= simple_form_for @commentaire do |f| %>
+  <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
+  <%= f.input :contenu, label: "Commentaire"  %>
+  <%= f.button :submit, "Modifier" %>
+<% end %>
