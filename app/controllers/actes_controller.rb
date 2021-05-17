@@ -30,7 +30,7 @@ class ActesController < ApplicationController
     @acte.registre = @registre
     @acte.save
     authorize @acte
-    redirect_to new_ville_registre_acte_personne_path(@ville, @registre, @acte)
+    redirect_to new_acte_personne_path(@acte)
   end
 
   def edit
@@ -49,8 +49,8 @@ class ActesController < ApplicationController
 
   def destroy
     @acte = Acte.find(params[:id])
-    @registre = Registre.find(params[:registre_id])
-    @ville = Ville.find(params[:ville_id])
+    #@registre = @acte.registre
+    #@ville = @registre.acte
     @acte.destroy
     authorize @acte
   end
