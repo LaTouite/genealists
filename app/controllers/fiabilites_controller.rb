@@ -1,0 +1,2 @@
+class FiabilitesController < ApplicationController
+end

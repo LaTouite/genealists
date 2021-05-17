@@ -1,14 +1,4 @@
-<% c = [] %>
-<% @acte.commentaires.each do |t| %>
-  <% c << t.user_id %>
-<% end %>
-
-<% if c.include?(current_user.id)  %>
-  <%= link_to "Modifier votre commentaire" %>
-<% else %>
-   <%= simple_form_for([@ville, @registre, @acte, @commentaire], remote: true) do |f| %>
-    <%= f.input :fiabilite, label: "Cet acte est-il fiable?", as: :boolean, as: :radio_buttons, collection: [['OUI', '1'], ['NON', '0']] %>
-    <%= f.input :contenu, label: "Commentaire"  %>
-    <%= f.button :submit, "Ajouter" %>
-  <% end %>
+<%= simple_form_for([@acte, @commentaire], method: :post, url: acte_commentaires_path(@acte), remote: true) do |f| %>
+  <%= f.input :contenu, label: "Commentaire"  %>
+  <%= f.button :submit, "Ajouter" %>
 <% end %>

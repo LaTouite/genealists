@@ -3,8 +3,8 @@ class PersonnesController < ApplicationController
 
   def new
     @acte = Acte.find(params[:acte_id])
-    @registre = Registre.find(params[:registre_id])
-    @ville = Ville.find(params[:ville_id])
+    @registre = @acte.registre
+    @ville = @registre.ville
     @personne = Personne.new
     authorize @personne
   end
@@ -12,11 +12,11 @@ class PersonnesController < ApplicationController
   def create
     @personne = Personne.new(personne_params)
     @acte = Acte.find(params[:acte_id])
-    @registre = Registre.find(params[:registre_id])
-    @ville = Ville.find(params[:ville_id])
+    @registre = @acte.registre
+    @ville = @registre.ville
     @personne.acte = @acte
     @personne.save
-    redirect_to ville_registre_acte_path(@ville, @registre, @acte)
+    redirect_to acte_path(@acte)
     authorize @personne
   end
 

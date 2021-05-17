@@ -46,8 +46,6 @@
 
 <p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_acte_path(@acte) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, acte_path(@acte), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
 
-<span id='fiabilite'><%= render 'commentaires/fiabilite' %></span>
-
 <br>
 <% if @acte.personnes.count != 0 %>
   <p>Liste des personnes apparaissant sur cet acte :</p>
@@ -61,7 +59,8 @@
 <% end %>
 
 <br>
-<%= link_to "Créer une personne associée à cet acte", new_ville_registre_acte_personne_path(@ville, @registre, @acte) %>
+<%#= link_to "Créer une personne associée à cet acte", new_acte_personne_path(@acte) %>
+<%= link_to "Créer une personne associée à cet acte", new_acte_personne_path(@acte) %>
 
 <br><br>
 <div id='first'>

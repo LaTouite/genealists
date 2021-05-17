@@ -1,3 +1,7 @@
-<% if @acte.commentaires.count == 0 %>
-  <p>Soyez le premier à noter la fiabilité de cet acte et laisser un commentaire</p>
+<% if current_user != nil && @acte.commentaires.count == 0 %>
+  <p>Aucun commentaire.
+  <br>Soyez le premier à noter la fiabilité de cet acte et laisser un commentaire</p>
+<% elsif current_user == nil && @acte.commentaires.count == 0 %>
+  <p>Aucun commentaire.</p>
+  <%= link_to "Connectez-vous pour noter cet acte et laisser un commentaire", new_user_session_path %>
 <% end %>

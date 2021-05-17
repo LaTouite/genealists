@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_095119) do
+ActiveRecord::Schema.define(version: 2021_05_16_172317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2021_05_08_095119) do
   end
 
   create_table "commentaires", force: :cascade do |t|
-    t.integer "fiabilite"
     t.text "contenu"
     t.bigint "acte_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -36,6 +35,16 @@ ActiveRecord::Schema.define(version: 2021_05_08_095119) do
     t.bigint "user_id"
     t.index ["acte_id"], name: "index_commentaires_on_acte_id"
     t.index ["user_id"], name: "index_commentaires_on_user_id"
+  end
+
+  create_table "fiabilites", force: :cascade do |t|
+    t.integer "note"
+    t.bigint "user_id", null: false
+    t.bigint "acte_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["acte_id"], name: "index_fiabilites_on_acte_id"
+    t.index ["user_id"], name: "index_fiabilites_on_user_id"
   end
 
   create_table "lieudits", force: :cascade do |t|
@@ -49,10 +58,10 @@ ActiveRecord::Schema.define(version: 2021_05_08_095119) do
   create_table "personnes", force: :cascade do |t|
     t.string "nom"
     t.string "prenom"
-    t.index ["acte_id"], name: "index_personnes_on_acte_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "acte_id"
+    t.index ["acte_id"], name: "index_personnes_on_acte_id"
   end
 
   create_table "registres", force: :cascade do |t|
@@ -61,9 +70,9 @@ ActiveRecord::Schema.define(version: 2021_05_08_095119) do
     t.string "anneedefin"
     t.string "nature"
     t.bigint "ville_id", null: false
-    t.index ["ville_id"], name: "index_registres_on_ville_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["ville_id"], name: "index_registres_on_ville_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,6 +101,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_095119) do
 
   add_foreign_key "actes", "registres"
   add_foreign_key "commentaires", "actes"
+  add_foreign_key "fiabilites", "actes"
+  add_foreign_key "fiabilites", "users"
   add_foreign_key "lieudits", "villes"
   add_foreign_key "personnes", "actes"
   add_foreign_key "registres", "villes"

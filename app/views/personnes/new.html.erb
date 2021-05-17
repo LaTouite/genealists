@@ -1,17 +1,17 @@
 <% if ["Mariages", "Publications de mariage", "Divorces"].include?(@acte.categorie) %>
-  <%= simple_form_for([@ville, @registre, @acte, @personne], remote: true) do |f| %>
+  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
     <%= f.input :nom %>
     <%= f.input :prenom %>
     <%= f.button :submit, "Créer" %>
   <% end %>
 
-  <%= simple_form_for([@ville, @registre, @acte, @personne], remote: true) do |f| %>
+  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
     <%= f.input :nom %>
     <%= f.input :prenom %>
     <%= f.button :submit, "Créer" %>
   <% end %>
 <% else %>
-  <%= simple_form_for([@ville, @registre, @acte, @personne], remote: true) do |f| %>
+  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
     <%= f.input :nom %>
     <%= f.input :prenom %>
     <%= f.button :submit, "Créer" %>

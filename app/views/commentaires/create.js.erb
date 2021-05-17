@@ -12,10 +12,6 @@ function change(id, Nb) {
   nb.innerHTML = Nb;
 }
 
-if (document.querySelector("#fiabilite")) {
-  change('fiabilite', '<%= j render "commentaires/fiabilite", commentaire: @commentaire %>');
-}
-
 if (document.querySelector("#zone")) {
   change('zone', '<%= j render "commentaires/zone", commentaire: @commentaire %>');
 }
