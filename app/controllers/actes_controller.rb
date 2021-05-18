@@ -3,7 +3,7 @@ class ActesController < ApplicationController
 
   def index
     @registre = Registre.find(params[:registre_id])
-    @ville = Ville.find(params[:ville_id])
+    @ville = @registre.ville
     @actes = policy_scope(Acte).order(created_at: :desc)
   end
 
@@ -17,16 +17,16 @@ class ActesController < ApplicationController
   end
 
   def new
-    @ville = Ville.find(params[:ville_id])
     @registre = Registre.find(params[:registre_id])
+    @ville = @registre.ville
     @acte = Acte.new
     authorize @acte
   end
 
   def create
     @acte = Acte.new(acte_params)
-    @ville = Ville.find(params[:ville_id])
     @registre = Registre.find(params[:registre_id])
+    @ville = @registre.ville
     @acte.registre = @registre
     @acte.save
     authorize @acte
@@ -49,10 +49,9 @@ class ActesController < ApplicationController
 
   def destroy
     @acte = Acte.find(params[:id])
-    #@registre = @acte.registre
-    #@ville = @registre.acte
     @acte.destroy
     authorize @acte
+    redirect_to registre_actes_path(@acte.registre)
   end
 
   private

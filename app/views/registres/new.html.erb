@@ -1,4 +1,4 @@
-<h1>Créer un nouveau registre pour <%= @ville.name %></h1>
+<h1>Créer un nouveau registre pour la ville de <%= @ville.name %></h1>
 <%= simple_form_for [@ville, @registre] do |f| %>
   <%= f.input :nature, label: "Nature", collection: Registre::NATURES %>
   <%= f.input :anneededebut, label: "Année de début" %>

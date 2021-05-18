@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   get 'contact', to: 'pages#contact'
   resources :villes do
     resources :lieudits, only: [:index, :new, :create]
-    resources :registres, only: [:index, :new, :create] do
-      resources :actes, only: [:index, :new, :create]
-    end
+    resources :registres, only: [:index, :new, :create]
   end
   resources :lieudits, only: [:show, :edit, :update, :destroy]
-  resources :registres, only: [:show, :edit, :update, :destroy]
+  resources :registres, only: [:show, :edit, :update, :destroy] do
+    resources :actes, only: [:index, :new, :create]
+  end
   resources :actes, only: [:show, :edit, :update, :destroy] do
     resources :commentaires, only: [:index, :new, :create]
     resources :personnes, only: [:index, :new, :create]

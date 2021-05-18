@@ -59,7 +59,6 @@
 <% end %>
 
 <br>
-<%#= link_to "Créer une personne associée à cet acte", new_acte_personne_path(@acte) %>
 <%= link_to "Créer une personne associée à cet acte", new_acte_personne_path(@acte) %>
 
 <br><br>
@@ -79,7 +78,7 @@
 </div>
 
 <% if @registre.anneededebut == @registre.anneedefin %>
-  <%= link_to 'Liste des actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + "pour l'année " + @registre.anneededebut, ville_registre_actes_path(@ville, @registre) %>
+  <%= link_to 'Liste des actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + "pour l'année " + @registre.anneededebut, registre_actes_path(@registre) %>
 <% else %>
-  <%= link_to 'Tous les actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + " pour la période " + @registre.anneededebut + "-" + @registre.anneedefin, ville_registre_actes_path(@ville, @registre) %>
+  <%= link_to 'Tous les actes pour le registre des ' + @registre.nature.downcase + ' de la ville de ' + @ville.name + " pour la période " + @registre.anneededebut + "-" + @registre.anneedefin, registre_actes_path(@registre) %>
 <% end %>

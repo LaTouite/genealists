@@ -24,21 +24,29 @@ class RegistresController < ApplicationController
     @registre.ville = @ville
     @registre.save
     authorize @registre
-    redirect_to registre_path(@registre)
+    if @registre.valid?
+      redirect_to registre_path(@registre)
+    else
+      redirect_to new_ville_registre_path
+    end
   end
 
   def edit
     @registre = Registre.find(params[:id])
-    @ville = Ville.find(params[:ville_id])
+    @ville = @registre.ville
     authorize @registre
   end
 
   def update
     @registre = Registre.find(params[:id])
-    @ville = Ville.find(params[:ville_id])
+    @ville = @registre.ville
     @registre.update(registre_params)
     authorize @registre
-    redirect_to ville_registres_path(@ville)
+    if @registre.valid?
+      redirect_to ville_registres_path(@ville)
+    else
+      redirect_to edit_registre_path(@registre)
+    end
   end
 
   def destroy
