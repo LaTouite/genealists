@@ -42,18 +42,31 @@
   <% m = "décembre" %>
 <% end %>
 
-<h1>Ville : <%= @ville.name %></h1>
-
-<p><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_acte_path(@acte) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, acte_path(@acte), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></p>
+<% @acte.personnes.where(acteur: "principal").each do |personne| %>
+  <div><%= personne.nom.upcase + " " + personne.prenom.capitalize %></div>
+<% end %>
+<div><%= @acte.categorie %> - <%= j %> <%= @acte.datederedaction.strftime("%d") %> <%= m %> <%= @acte.datederedaction.year %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_acte_path(@acte) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, acte_path(@acte), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></div>
+<div>Ville : <%= @ville.name %></div>
 
 <br>
 <% if @acte.personnes.count != 0 %>
   <p>Liste des personnes apparaissant sur cet acte :</p>
-  <ul>
-    <% @acte.personnes.each do |personne| %>
-      <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
-    <% end %>
-  </ul>
+  <% if @acte.personnes.where(acteur: "principal") != 0 %>
+    <p>Acteurs principaux :</p>
+    <ul>
+      <% @acte.personnes.where(acteur: "principal").each do |personne| %>
+        <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if @acte.personnes.where(acteur: "secondaire").count != 0 %>
+    <p>Acteurs secondaires :</p>
+    <ul>
+      <% @acte.personnes.where(acteur: "secondaire").each do |personne| %>
+          <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <% else %>
   <p>Aucune personne rattachée à cet acte</p>
 <% end %>

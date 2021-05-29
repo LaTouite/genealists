@@ -1,3 +1,4 @@
+<h1>Liste des actes</h1>
 <h1>Ville : <%= @ville.name %></h1>
 <h1>Registre : <%= @registre.nature %></h1>
 <% if @registre.anneededebut != @registre.anneedefin %>
@@ -11,11 +12,19 @@
 <br>
 <br>
 <br>
-<% if @registre.actes.count == 0 %>
+
+<% k = [] %>
+<% @registre.actes.each do |acte| %>
+  <% if acte.personnes.count > 0 %>
+    <% k << acte %>
+  <% end %>
+<% end %>
+
+<% if k.count == 0 %>
   <p>Pas d'acte pour ce registre</p>
 <% else %>
   <p>
-    <%= @registre.actes.count %> <%= if @registre.actes.count == 1 then "acte disponible" else "actes disponibles" end %> pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
+    <%= k.count %> <%= if k.count == 1 then "acte disponible" else "actes disponibles" end %> pour le registre des <%= @registre.nature.downcase %> de la ville de <%= @ville.name %> pour
   <% if @registre.anneededebut == @registre.anneedefin %>
       l'année <%= @registre.anneededebut %></p>
     <% else %>
@@ -24,22 +33,38 @@
   </p>
 <% end %>
 
-
-<% @actes.where(registre_id: @registre.id).each do |acte| %>
+<% k.each do |acte| %>
   <ul>
   <% if ["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) && acte.personnes.count > 1 %>
     <li><%= link_to acte.personnes.first.nom.upcase + " " + acte.personnes.first.prenom.capitalize + " & " + acte.personnes.last.nom.upcase + " " + acte.personnes.last.prenom.capitalize + ", "+ acte.categorie + ", " + acte.datederedaction.to_s, acte_path(acte) %>
-  <% else %>
+  <% elsif acte.personnes.count == 1 %>
     <li><% acte.personnes.each do |personne| %>
       <%= link_to personne.nom.upcase + " " + personne.prenom.capitalize  + ", " + acte.categorie + ", " + acte.datederedaction.to_s, acte_path(acte) %>
     <% end %>
+  <% elsif acte.personnes.count == 0 %>
+    error
   <% end %>
   <%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_acte_path(acte) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, acte_path(acte), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></li>
   </ul>
 <% end %>
 
-<br>
-<br>
+<% c = [] %>
+<% @registre.actes.each do |acte| %>
+  <% if acte.personnes.count == 0 %>
+    <% c << acte %>
+  <% end %>
+<% end %>
+
+<% if c.count == 1 %>
+  <%= c.count %> acte incomplet
+<% elsif c.count > 1 %>
+  <%= c.count %> actes incomplets
+<% end %>
+
+<% c.each do |a| %>
+  <div><%= a.datederedaction %> <%= link_to "Ajouter une personne", new_acte_personne_path(a) %></div>
+<% end %>
+
 <br>
 <p><%= link_to "Créer un acte pour ce registre", new_registre_acte_path(@registre) %></p>
 <p><%= link_to "Tous les Registres de " + @ville.name, ville_registres_path(@ville) %></p>

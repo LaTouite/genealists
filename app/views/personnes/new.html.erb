@@ -12,8 +12,10 @@
   <% end %>
 <% else %>
   <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+    <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
     <%= f.input :nom %>
     <%= f.input :prenom %>
+    <%= f.input :role %>
     <%= f.button :submit, "Créer" %>
   <% end %>
 <% end %>

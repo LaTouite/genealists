@@ -1,7 +1,7 @@
 <% if @registre.anneededebut != @registre.anneedefin %>
-  <h1><%= @registre.anneededebut + "-" + @registre.anneedefin + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
+  <h1>Registre des <%= @registre.nature.downcase %> pour la période <%= @registre.anneededebut + "-" + @registre.anneedefin + " (côte: " + @registre.cote + ")" %>
 <% else %>
-  <h1><%= @registre.anneededebut + ", " + @registre.nature + " (côte: " + @registre.cote + ")" %>
+  <h1>Registre des <%= @registre.nature.downcase %> pour l'année <%= @registre.anneededebut + " (côte: " + @registre.cote + ")" %>
 <% end %>
 <%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_registre_path(@registre) %>
 <%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, registre_path(@registre), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></h1>
