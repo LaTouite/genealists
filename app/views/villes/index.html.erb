@@ -1,15 +1,21 @@
-<% r = [] %>
-<% @villes.each do |ville|  %>
-  <% r << ville.region %>
-<% end %>
+<div>
+  <% [* ('A'..'Z')].each do |letter| %>
+    <span class='letters'><%= letter %></span>
+  <% end %>
+</div>
 
-<% r.uniq.each do |region| %>
-  <p><%= region %></p>
-  <ul>
-    <% @villes.where(region: region).each do |ville| %>
-    <li><%= link_to ville.name, ville_path(ville) %><%= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(ville) %><%= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %></li>
+<div>
+  <% @villes.each do |ville| %>
+    <% if ville.name[0..2].include?("La ") || ville.name[0..2].include?("Le ") %>
+      <div class='<%= ville.name[3] %>'>
+    <% elsif ville.name[0..3].include?("Les ")%>
+      <div class='<%= ville.name[4] %>'>
+    <% else %>
+      <div class='<%= ville.name.first %>'>
     <% end %>
-  </ul>
-<% end %>
+      <%= link_to ville.name, ville_path(ville) %><%#= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(ville) %><%#= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
+    </div>
+  <% end %>
 
-<%= link_to "Créer une nouvelle ville", new_ville_path %>
+</div>
+<%#= link_to "Créer une nouvelle ville", new_ville_path %>
