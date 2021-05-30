@@ -8,7 +8,7 @@ class Registre < ApplicationRecord
 
   def annee
     if anneedefin < anneededebut
-      errors.add(:anneedefin, "L'année de fin doit être postérieure à l'année de début")
+      errors.add(:anneedefin, "L'année de fin doit être égale ou postérieure à l'année de début")
     end
   end
 end

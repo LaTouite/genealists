@@ -1,21 +1,63 @@
 <% if ["Mariages", "Publications de mariage", "Divorces"].include?(@acte.categorie) %>
-  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
-    <%= f.input :nom %>
-    <%= f.input :prenom %>
-    <%= f.button :submit, "Créer" %>
+
+  <% if @acte.personnes.where(acteur: "principal").count == 1 %>
+
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
+
+  <% elsif @acte.personnes.where(acteur: "principal").count == 2 %>
+
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :hidden, input_html: {value: "secondaire" } %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
+
+  <% else %>
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
   <% end %>
 
-  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
-    <%= f.input :nom %>
-    <%= f.input :prenom %>
-    <%= f.button :submit, "Créer" %>
-  <% end %>
 <% else %>
-  <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
-    <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
-    <%= f.input :nom %>
-    <%= f.input :prenom %>
-    <%= f.input :role %>
-    <%= f.button :submit, "Créer" %>
+
+  <% if @acte.personnes.where(acteur: "principal").count == 0 %>
+
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
+
+  <% else %>
+
+    <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
+      <%= f.input :acteur, as: :hidden, input_html: {value: "secondaire" }  %>
+      <%= f.input :nom %>
+      <%= f.input :prenom %>
+      <%= f.input :role %>
+      <%= f.button :submit, "Créer" %>
+    <% end %>
   <% end %>
 <% end %>
+<%= link_to "Retour", acte_path(@acte) %>

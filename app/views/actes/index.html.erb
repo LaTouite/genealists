@@ -15,8 +15,10 @@
 
 <% k = [] %>
 <% @registre.actes.each do |acte| %>
-  <% if acte.personnes.count > 0 %>
+  <% if ["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) && (acte.personnes.where(acteur: "principal").count == 2) %>
     <% k << acte %>
+  <% elsif (["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) == false) && (acte.personnes.where(acteur: "principal").count == 1) %>
+      <% k << acte %>
   <% end %>
 <% end %>
 
@@ -37,8 +39,8 @@
   <ul>
   <% if ["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) && acte.personnes.count > 1 %>
     <li><%= link_to acte.personnes.first.nom.upcase + " " + acte.personnes.first.prenom.capitalize + " & " + acte.personnes.last.nom.upcase + " " + acte.personnes.last.prenom.capitalize + ", "+ acte.categorie + ", " + acte.datederedaction.to_s, acte_path(acte) %>
-  <% elsif acte.personnes.count == 1 %>
-    <li><% acte.personnes.each do |personne| %>
+  <% elsif acte.personnes.where(acteur: "principal").count == 1 %>
+    <li><% acte.personnes.where(acteur: "principal").each do |personne| %>
       <%= link_to personne.nom.upcase + " " + personne.prenom.capitalize  + ", " + acte.categorie + ", " + acte.datederedaction.to_s, acte_path(acte) %>
     <% end %>
   <% elsif acte.personnes.count == 0 %>
@@ -50,7 +52,9 @@
 
 <% c = [] %>
 <% @registre.actes.each do |acte| %>
-  <% if acte.personnes.count == 0 %>
+  <% if ["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) && (acte.personnes.where(acteur: "principal").count < 2) %>
+    <% c << acte %>
+  <% elsif (["Mariages", "Publications de mariage", "Divorces"].include?(acte.categorie) == false) && (acte.personnes.where(acteur: "principal").count < 1) %>
     <% c << acte %>
   <% end %>
 <% end %>
