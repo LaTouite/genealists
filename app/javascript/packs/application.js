@@ -13,6 +13,43 @@ if (document.querySelector(".datepicker")) {
 // flatpickrInitDeadline();
 
 
+// const letter = (r) => {
+//   const d = document.getElementById(r);
+//   d.addEventListener("click", (event) => {
+//     event.preventDefault();
+//     const villes = document.getElementsByClassName(r)[0];
+//     villes.classList.toggle("d-none");
+//   });
+// }
+
+// if (document.querySelectorAll(".letter")) {
+//   letter("A");
+// }
+
+// if (document.querySelectorAll(".letter")) {
+//   letter("B");
+// }
+
+const displayCities = (bigLetter, cityFirstLetter) => {
+  const lettre = document.getElementById(bigLetter);
+  lettre.addEventListener("click", (event) => {
+    event.preventDefault();
+    const cities = document.querySelectorAll(cityFirstLetter);
+    cities.forEach((city) => {
+      city.classList.toggle("d-none");
+    });
+  });
+}
+
+if (document.querySelectorAll(".letter")) {
+  displayCities("B", ".B");
+}
+
+if (document.querySelectorAll(".letter")) {
+  displayCities("A", ".A");
+}
+
+
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()

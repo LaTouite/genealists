@@ -1,21 +1,28 @@
-<div>
-  <% [* ('A'..'Z')].each do |letter| %>
-    <span class='letters'><%= letter %></span>
-  <% end %>
-</div>
+<div class='container'>
 
-<div>
-  <% @villes.each do |ville| %>
-    <% if ville.name[0..2].include?("La ") || ville.name[0..2].include?("Le ") %>
-      <div class='<%= ville.name[3] %>'>
-    <% elsif ville.name[0..3].include?("Les ")%>
-      <div class='<%= ville.name[4] %>'>
-    <% else %>
-      <div class='<%= ville.name.first %>'>
+  <h1>
+    Liste des villes
+  </h1>
+
+  <div id='letters' class='d-flex'>
+    <% [* ('A'..'Z')].each do |letter| %>
+      <div class='letter' id='<%= letter %>'><%= letter %></div>
     <% end %>
-      <%= link_to ville.name, ville_path(ville) %><%#= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(ville) %><%#= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
-    </div>
-  <% end %>
+  </div>
 
+  <div>
+    <% @villes.each do |ville| %>
+      <% if ville.name[0..2].include?("La ") || ville.name[0..2].include?("Le ") %>
+        <div class='<%= ville.name[3] %> d-none'>
+      <% elsif ville.name[0..3].include?("Les ")%>
+        <div class='<%= ville.name[4] %> d-none'>
+      <% else %>
+        <div class='<%= ville.name.first %> d-none'>
+      <% end %>
+        <%= link_to ville.name, ville_path(ville) %><%#= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(ville) %><%#= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
+      </div>
+    <% end %>
+
+  </div>
+  <%#= link_to "Créer une nouvelle ville", new_ville_path %>
 </div>
-<%#= link_to "Créer une nouvelle ville", new_ville_path %>
