@@ -41,13 +41,18 @@ const displayCities = (bigLetter, cityFirstLetter) => {
   });
 }
 
-if (document.querySelectorAll(".letter")) {
-  displayCities("B", ".B");
-}
 
 if (document.querySelectorAll(".letter")) {
-  displayCities("A", ".A");
+  displayCities("A",".A");
+  displayCities("B",".B");
+  displayCities("C",".C");
+  displayCities("D",".D");
+  displayCities("E",".E");
 }
+
+// if (document.querySelectorAll(".letter")) {
+//   displayCities("A", ".A");
+// }
 
 
 require("@rails/ujs").start()
