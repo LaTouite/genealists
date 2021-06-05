@@ -46,7 +46,7 @@ const displayCities = (bigLetter, cityFirstLetter) => {
   });
 }
 
-if (document.querySelectorAll(".letter")) {
+if (document.querySelector(".letter")) {
   displayCities("A",".A");
   displayCities("B",".B");
   displayCities("C",".C");
