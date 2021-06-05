@@ -33,14 +33,18 @@ if (document.querySelector(".datepicker")) {
 const displayCities = (bigLetter, cityFirstLetter) => {
   const lettre = document.getElementById(bigLetter);
   lettre.addEventListener("click", (event) => {
-    event.preventDefault();
-    const cities = document.querySelectorAll(cityFirstLetter);
-    cities.forEach((city) => {
-      city.classList.toggle("d-none");
-    });
+    // if (document.querySelectorAll(cityFirstLetter).length != 0) {
+      const cities = document.querySelectorAll(cityFirstLetter);
+      const citiesAll = document.querySelectorAll(".ville");
+      citiesAll.forEach((city) => {
+        city.classList.add("d-none");
+      });
+      cities.forEach((city) => {
+        city.classList.toggle("d-none");
+      });
+    // };
   });
 }
-
 
 if (document.querySelectorAll(".letter")) {
   displayCities("A",".A");
@@ -48,12 +52,28 @@ if (document.querySelectorAll(".letter")) {
   displayCities("C",".C");
   displayCities("D",".D");
   displayCities("E",".E");
+  displayCities("F",".F");
+  displayCities("G",".G");
+  displayCities("H",".H");
+  displayCities("I",".I");
+  displayCities("J",".J");
+  displayCities("K",".K");
+  displayCities("L",".L");
+  displayCities("M",".M");
+  displayCities("N",".N");
+  displayCities("O",".O");
+  displayCities("P",".P");
+  displayCities("Q",".Q");
+  displayCities("R",".R");
+  displayCities("S",".S");
+  displayCities("T",".T");
+  displayCities("U",".U");
+  displayCities("V",".V");
+  displayCities("W",".W");
+  displayCities("X",".X");
+  displayCities("Y",".Y");
+  displayCities("Z",".Z");
 }
-
-// if (document.querySelectorAll(".letter")) {
-//   displayCities("A", ".A");
-// }
-
 
 require("@rails/ujs").start()
 require("turbolinks").start()

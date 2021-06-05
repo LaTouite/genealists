@@ -5,24 +5,42 @@
   </h1>
 
   <div id='letters' class='d-flex'>
+    <% fi = [] %>
+    <% @villes.each do |ville| %>
+      <% if ville.name[0..2].include?("La ") || ville.name[0..2].include?("Le ") %>
+        <% fi << ville.name[3] %>
+      <% elsif ville.name[0..3].include?("Les ")%>
+        <% fi << ville.name[4] %>
+      <% elsif (ville.name.first == "É") || (ville.name.first == "È") %>
+        <% fi << "E" %>
+      <% else %>
+        <% fi <<  ville.name.first %>
+      <% end %>
+    <% end %>
+
     <% [* ('A'..'Z')].each do |letter| %>
-      <div class='letter' id='<%= letter %>'><%= letter %></div>
+      <% if fi.uniq.include?(letter) %>
+        <div class='letter letterone' id='<%= letter %>'><%= letter %></div>
+      <% else %>
+        <div class='letter letterbis' id='<%= letter %>'><%= letter %></div>
+      <% end %>
     <% end %>
   </div>
 
   <div>
-    <% @villes.each do |ville| %>
+    <% @villes.sort.each do |ville| %>
       <% if ville.name[0..2].include?("La ") || ville.name[0..2].include?("Le ") %>
-        <div class='<%= ville.name[3] %> d-none'>
+        <div class='<%= ville.name[3] %> ville d-none'>
       <% elsif ville.name[0..3].include?("Les ")%>
-        <div class='<%= ville.name[4] %> d-none'>
+        <div class='<%= ville.name[4] %> ville d-none'>
+      <% elsif (ville.name.first == "É")|| (ville.name.first == "È") %>
+        <div class='E ville d-none'>
       <% else %>
-        <div class='<%= ville.name.first %> d-none'>
+        <div class='<%= ville.name.first %> ville d-none'>
       <% end %>
         <%= link_to ville.name, ville_path(ville) %><%#= link_to "<i class='fas fa-edit'></i>".html_safe, edit_ville_path(ville) %><%#= link_to "<i class='fas fa-trash-alt'></i>".html_safe, ville_path(ville), method: :delete, data: { confirm: "Voulez-vous vraiment supprimer?"} %>
       </div>
     <% end %>
-
   </div>
   <%#= link_to "Créer une nouvelle ville", new_ville_path %>
 </div>
