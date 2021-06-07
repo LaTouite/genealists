@@ -25,7 +25,7 @@ class RegistresController < ApplicationController
     @registre.save
     authorize @registre
     if @registre.valid?
-      redirect_to registre_path(@registre)
+      redirect_to registre_actes_path(@registre)
     else
       redirect_to new_ville_registre_path
     end
