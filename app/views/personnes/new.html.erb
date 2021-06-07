@@ -6,7 +6,15 @@
       <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
 
@@ -16,7 +24,15 @@
       <%= f.input :acteur, as: :hidden, input_html: {value: "secondaire" } %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
 
@@ -25,14 +41,30 @@
       <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
     <%= simple_form_for([@acte, @personne], remote: true) do |f| %>
       <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
   <% end %>
@@ -45,7 +77,15 @@
       <%= f.input :acteur, as: :radio_buttons, collection: ["principal", "secondaire"] %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
 
@@ -55,7 +95,15 @@
       <%= f.input :acteur, as: :hidden, input_html: {value: "secondaire" }  %>
       <%= f.input :nom %>
       <%= f.input :prenom %>
-      <%= f.input :role %>
+      <%= f.input :sexe, as: :radio_buttons, collection: ["M", "F", "inconnu"] %>
+      <%= f.input :datedenaissance %>
+      <%= f.input :age %>
+      <%= f.input :decede, as: :radio_buttons, collection: ["OUI", "NON", "inconnu"] %>
+      <%= f.input :profession %>
+      <%= f.input :ville %>
+      <%= f.input :signature, collection: ["OUI", "NON"] %>
+      <%= f.input :role, as: :radio_buttons, collection: Personne::ROLES %>
+      <%= f.input :lien, as: :radio_buttons, collection: Personne::LIENS %>
       <%= f.button :submit, "Créer" %>
     <% end %>
   <% end %>

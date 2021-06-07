@@ -23,6 +23,6 @@ class PersonnesController < ApplicationController
   private
 
   def personne_params
-    params.require(:personne).permit(:nom, :prenom, :acteur, :role)
+    params.require(:personne).permit(:nom, :prenom, :acteur, :role, :sexe, :age, :datedenaissance, :profession, :ville, :lien, :signature, :decede)
   end
 end

@@ -63,7 +63,29 @@
     <p>Acteurs secondaires :</p>
     <ul>
       <% @acte.personnes.where(acteur: "secondaire").each do |personne| %>
-          <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %></li>
+          <li><%= personne.nom.upcase + " " + personne.prenom.capitalize %>
+            <% if personne.lien != nil %>
+              <% if personne.sexe == "F" %>
+                <% if personne.lien == "Père/Mère" %>
+                  <%= ", mère" %>
+                <% elsif personne.lien == "Frère/Soeur" %>
+                  <%= ", soeur" %>
+                <% elsif personne.lien != nil %>
+                  <%= personne.lien %>
+                <% end %>
+              <% elsif personne.sexe == "M" %>
+                <% if personne.lien == "Père/Mère" %>
+                  <%= ", père" %>
+                <% elsif personne.lien == "Frère/Soeur" %>
+                  <%= ", frère" %>
+                <% elsif personne.lien != nil %>
+                  <%= ", " + personne.lien.downcase %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <%= if (personne.role != nil) && (personne.lien != nil) then " et " + personne.role.downcase end %>
+            <%= if (personne.role != nil) && (personne.lien == nil) then ", " + personne.role.downcase end %>
+          </li>
       <% end %>
     </ul>
   <% end %>
