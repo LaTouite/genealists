@@ -6,7 +6,7 @@ class Acte < ApplicationRecord
 
   validate :date
 
-    def date
+  def date
     if datederedaction < datedelevenement
       errors.add(:anneedefin, "La date de rédaction doit être égale ou postérieure à la date de l'évènement")
     end

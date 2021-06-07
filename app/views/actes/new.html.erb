@@ -5,7 +5,27 @@
     pour la période <%= @registre.anneededebut %> - <%= @registre.anneedefin %></p>
   <% end %>
 </h1>
+
+
 <%= simple_form_for [@registre, @acte], remote: true do |f| %>
+  <%= render 'layouts/error_messages', object: f.object %>
+
+  <% if @acte.errors.any? %>
+    <ul>
+    <% @acte.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <% if f.object.errors.any? %>
+    <div>
+      <% f.object.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  <% end %>
+
   <% if @registre.nature == "Baptêmes, Mariages, Sépultures" %>
     <%= f.input :categorie, label: "Catégorie", collection: ["Baptêmes", "Mariages", "Sépultures"] %>
   <% elsif @registre.nature == "Naissances, Mariages, Décès" %>

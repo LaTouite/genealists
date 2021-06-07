@@ -28,9 +28,12 @@ class ActesController < ApplicationController
     @registre = Registre.find(params[:registre_id])
     @ville = @registre.ville
     @acte.registre = @registre
-    @acte.save
+    if @acte.save
+      redirect_to new_acte_personne_path(@acte)
+    else
+      render 'new'
+    end
     authorize @acte
-    redirect_to new_acte_personne_path(@acte)
   end
 
   def edit
@@ -57,6 +60,6 @@ class ActesController < ApplicationController
   private
 
   def acte_params
-    params.require(:acte).permit(:categorie, :datederedaction, :datedelevenement, :page)
+    params.require(:acte).permit(:categorie, :datederedaction, :datedelevenement, :page, :reference)
   end
 end
